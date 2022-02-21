@@ -24,7 +24,7 @@ html {
     left: 0;
     width: 50%;
     height: 50%;
-    background: blanchedalmond url(./cover.jpg) no-repeat center center/cover;
+    background: blanchedalmond url(asset/cover.jpg) no-repeat center center/cover;
     z-index: -1;
     overflow: hidden;
     transform: translate(-50%, -50%);
@@ -36,4 +36,5 @@ html {
     align-items: center;
     display: flex;
     z-index: 1;
+    transform: scale(0.7);
 }
