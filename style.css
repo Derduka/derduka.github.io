@@ -1,0 +1,39 @@
+@import url(https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css);
+body {
+    font-family: Arial, Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.5;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.showcase {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background: blanchedalmond url(./cover.jpg) no-repeat center center/cover;
+    z-index: -1;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+}
+
+.welcome-title {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    z-index: 1;
+}
