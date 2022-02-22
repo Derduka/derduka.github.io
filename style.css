@@ -10,12 +10,12 @@ html {
 
 .showcase {
     height: 100vh;
-    position: relative;
+    width: 100vw;
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
 }
 
 .video-container {
