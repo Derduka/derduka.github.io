@@ -1,17 +1,19 @@
-
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
     * {
         margin: 0;
         padding: 0;
         font-family: Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
     }
     
-    html {
+    html,
+    body {
         scroll-behavior: smooth;
+        width: 100%;
     }
     
     .showcase {
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         position: relative;
         display: flex;
         align-items: center;
@@ -23,6 +25,16 @@
         z-index: -2;
     }
     
+    .video-container video {
+        min-width: 100%;
+        min-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        position: absolute;
+    }
+    
     .welcome-title {
         margin: 0 auto;
         z-index: 1;
@@ -32,22 +44,23 @@
     /*---- Title Auto Shaped   ----*/
     
     @media screen and (max-width: 960px) {
-            .welcome-title {
-                transform: scale(0.6);
-            }
+        .welcome-title {
+            transform: scale(0.6);
         }
-        
-     @media screen and (max-width: 768px) {
-            .welcome-title {
-                transform: scale(0.5);
-            }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .welcome-title {
+            transform: scale(0.5);
         }
-        
+    }
+    
     @media screen and (max-width: 480px) {
-            .welcome-title {
-                transform: scale(0.3);
-            }
+        .welcome-title {
+            transform: scale(0.3);
         }
+    }
+    
     #topmenubar {
         position: absolute;
         top: 5%;
@@ -104,28 +117,33 @@
         transform: scale(1);
     }
     
-
-       .arrow-container {
+    .arrow-container {
         position: absolute;
         z-index: 2;
         bottom: 50px;
         text-align: center;
         display: block;
     }
-
-    .arrow-container span{
+    
+    .arrow-container span {
         color: rgb(187, 238, 210);
         font-size: 25px;
         font-weight: 900;
         position: relative;
         display: block;
         top: 0;
-        text-shadow:0 0 40px #abebde;
+        text-shadow: 0 0 40px #abebde;
         animation: move 1s infinite;
-
     }
+    
     @keyframes move {
-        0% {top: 0}
-        50% {top:20px}
-        100% {top:0}
+        0% {
+            top: 0
+        }
+        50% {
+            top: 20px
+        }
+        100% {
+            top: 0
+        }
     }
