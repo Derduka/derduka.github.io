@@ -105,13 +105,14 @@
     }
     
 
-    .arrow-container{
+       .arrow-container {
         position: absolute;
         z-index: 2;
-        margin-top: 40px;
-        top: 500px;
-
+        bottom: 50px;
+        text-align: center;
+        display: block;
     }
+
     .arrow-container span{
         color: rgb(187, 238, 210);
         font-size: 25px;
