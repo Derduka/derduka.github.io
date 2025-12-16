@@ -21,12 +21,18 @@
 </head>
 
 <body>
+    <audio id="bgm" src="asset/derezzed.mp3" loop preload="auto" autoplay></audio>
     <section class="showcase">
+        <div class="audio-toggle" id="audio-toggle" aria-label="Toggle music">
+            <i class="fa fa-volume-up"></i>
+        </div>
+        <div class="audio-hint" id="audio-hint">Click / Tap to enable sound</div>
         <div class="video-container">
-            <video id="videoBG" poster="asset/cover.jpg" playsinline autoplay muted loop x5-video-player-type="h5">
+            <video id="videoBG" poster="asset/cover.jpg" playsinline autoplay muted loop preload="metadata" x5-video-player-type="h5">
                 <source src="https://cdn.jsdelivr.net/gh/Derduka/derduka.github.io/asset/retro bg 400k1080.mp4" type="video/mp4">
                 <source src="https://cdn.jsdelivr.net/gh/Derduka/derduka.github.io/asset/retro bg ogg.ogv" type="video/ogg">
                 <source src="https://cdn.jsdelivr.net/gh/Derduka/derduka.github.io/asset/retro bg  .webm" type="video/webm">
+            </video>
         </div>
         <div class="welcome-title">
             <a href="https://www.notcool.day">
@@ -50,4 +56,91 @@
         </nav>
         
     </section>
+    <section id="about-section" class="content-section">
+        <div class="content-inner">
+            <h1>About</h1>
+            <p>In the physical world, I work at the intersection of finance and technology; behind the screen, I am more of an observer moving between the flows of capital, code and data.<br>Starting from finance and economics, I gradually stepped into the digital world, trying to use a bit of rationality to unpack stories that are carefully packaged as "cool".<br>This site is a quiet corner for me in the cyber noise, where I park thoughts that may not look "cool", but feel closer to who I am.<br><br>在现实世界，我是一个在金融和技术交界处工作的人；在屏幕背后，我更像一个在资金流、代码流和数据流之间游走的观察者。<br>从金融学与经济学作为起点，慢慢走进数字化世界，用一点理性去拆解那些被包装得很“酷”的故事。<br>本站，是我在赛博噪音中的一个安静角落，放一些不算“酷”，但也许更接近自己的想法。</p>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var arrowContainer = document.querySelector('.arrow-container');
+            var aboutSection = document.querySelector('#about-section');
+            var bgm = document.getElementById('bgm');
+            if (bgm) {
+                bgm.volume = 0.4; // 默认音量调低一点
+            }
+            var audioToggle = document.getElementById('audio-toggle');
+            var audioIcon = audioToggle ? audioToggle.querySelector('i') : null;
+            var audioHint = document.getElementById('audio-hint');
+            var hasStartedBgm = false;
+
+            function hideAudioHint() {
+                if (!audioHint) return;
+                audioHint.classList.add('audio-hint--hidden');
+            }
+
+            function setIconPlaying() {
+                if (!audioIcon || !audioToggle) return;
+                audioIcon.classList.remove('fa-volume-off');
+                audioIcon.classList.add('fa-volume-up');
+                audioToggle.classList.remove('muted');
+                hideAudioHint();
+            }
+
+            function setIconMuted() {
+                if (!audioIcon || !audioToggle) return;
+                audioIcon.classList.remove('fa-volume-up');
+                audioIcon.classList.add('fa-volume-off');
+                audioToggle.classList.add('muted');
+            }
+
+            function startBgm() {
+                if (!bgm || hasStartedBgm) {
+                    return;
+                }
+                bgm.play().then(function () {
+                    hasStartedBgm = true;
+                    setIconPlaying();
+                }).catch(function () {
+                    // 如果浏览器拦截了自动播放，就静默失败，等待用户交互后再试
+                });
+            }
+
+            // 页面加载后先尝试一次自动播放
+            startBgm();
+
+            if (audioToggle) {
+                audioToggle.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    if (!bgm) {
+                        return;
+                    }
+                    if (bgm.paused) {
+                        bgm.play().then(function () {
+                            hasStartedBgm = true;
+                            setIconPlaying();
+                        }).catch(function () {});
+                    } else {
+                        bgm.pause();
+                        setIconMuted();
+                    }
+                });
+            }
+
+            if (!arrowContainer || !aboutSection) {
+                document.addEventListener('click', startBgm, { once: true });
+                return;
+            }
+
+            arrowContainer.addEventListener('click', function () {
+                aboutSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+                startBgm();
+            });
+
+            document.addEventListener('click', startBgm, { once: true });
+        });
+    </script>
 </body>
